@@ -1,0 +1,40 @@
+<!-- views/admin.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Chat</title>
+</head>
+<body>
+  <h1>Admin Chat</h1>
+  <div id="messages">
+    <% messages.forEach(message => { %>
+      <p><strong><%= message.username %>:</strong> <%= message.message %> - <%= message.timestamp %></p>
+    <% }); %>
+  </div>
+  <input type="text" id="messageInput" placeholder="Type your message">
+  <button onclick="sendMessage()">Send</button>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io('/admin');
+
+    socket.on('newMessage', message => {
+      const messagesDiv = document.getElementById('messages');
+      messagesDiv.innerHTML += `<p><strong>${message.username}:</strong> ${message.message} - ${message.timestamp}</p>`;
+    });
+
+    function sendMessage() {
+        console.log('sendMessage function called');
+      const messageInput = document.getElementById('messageInput');
+      const message = messageInput.value.trim();
+      if (message) {
+        socket.emit('sendMessage', message); // Emit 'sendMessage' event with the message
+        messageInput.value = '';
+      }
+    }
+  </script>
+
+</body>
+</html>

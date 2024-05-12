@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="/css/nav.css">
+<nav>
+    <div class="cname">JAYESH</div>
+    <div class="login">
+      <!-- <form action="/logout" method="post">
+        <button type="submit" class="logout">Logout</button>
+      </form> -->
+
+      <a href="/employee-panel?employeeId=<%= employeeId %>" type="button">Home</a>
+      <a href="/event-request?employeeId=<%= employeeId %>" type="button">Event Request</a>
+      <a href="/leaverequest?employeeId=<%= employeeId %>" type="button">Leave Request</a>
+      <a href="/meeting-request?employeeId=<%=employeeId%>" type="button">Meeting Request</a>
+      <a href="/applyReimbursement?employeeId=<%=employeeId%>" type="button">Bill Reimbursement</a>
+      
+      <a href="#" onclick="logout(event)" class="logout">Logout</a>
+    </div>
+  </nav>

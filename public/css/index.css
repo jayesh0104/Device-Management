@@ -1,0 +1,53 @@
+*{
+  margin: 0px;
+}
+body{
+  background-color: whitesmoke;
+}
+nav{
+  padding:0px 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+}
+/* .logout{
+  height: 40px;
+} */
+nav .cname{
+  margin-left: 20px;
+  margin-top: 10px;
+  font-weight: 900;
+  font-size: 40px;
+  flex-grow: 1;
+}
+button{
+  background-color: white;
+  border: 1px rgb(202, 202, 202) solid;
+  border-radius: 5px;
+  height: 40px;
+  width: 100px;
+  margin: 2px;
+  cursor:pointer;
+}
+.login{
+  margin-top: 5px;
+}
+
+aside{
+  padding: 20px;
+  width: 15%;
+  height: 85vh;
+  background-color: rgba(239, 237, 237,0.1);
+  border:2px black solid;
+  border-radius: 0 10px 10px 0;
+}
+
+.asidemain{
+  font-size: 18px;
+  font-weight: bolder;
+  margin: 10px 0px;
+}
+
+.mainevent{
+  list-style-type: none;
+}

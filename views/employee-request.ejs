@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a New Device</title>
+    <link rel="stylesheet" href="/css/admin-panel.css">
+    <link rel="stylesheet" href="/css/employee-request.css">
+</head>
+<body>
+    <nav>
+        <div class="cname">
+          Jayesh
+        </div>
+        <div class="logout">
+          <form action="/logout" method="post">
+            <button type="submit" class="logout">Logout</button>
+          </form>
+        </div>
+      </nav>
+
+    <div class="container">
+      <form action="/request-device" method="post" class="add-device">
+          <h2>Request a New Device</h2>
+            <label for="deviceName">Device Name:</label>
+            <select id="deviceName" name="deviceName" required>
+              <option value="">Select a device</option>
+              <option value="PC">PC</option>
+              <option value="UPS">UPS</option>
+              <option value="SPEAKER">Speaker</option>
+              <option value="HEADPHONE">Headphone</option>
+              <option value="KEYBOARD">Keyboard</option>
+            </select><br>
+            <label for="reason">Reason:</label>
+            <textarea name="reason" id="reason" placeholder="Reason" cols="83" rows="5" required></textarea>
+            <label for="employeeId">Employee ID:</label>
+            <input type="text" name="employeeId" id="employeeId" value="<%= employeeId %>" readonly>
+            <button type="submit" class="submit">Request Device</button><br>
+        </form>
+    </div>
+</body>
+</html>

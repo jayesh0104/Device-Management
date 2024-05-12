@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Director Login</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <%- include('nav.ejs'); %>
+  <form action="/director-login" method="post" class="admin-login">
+    <h3>Director Login</h3>
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" required>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required>
+
+    <button type="submit" class="loginbtn">Login</button>
+  </form>
+  <%- include('footer.ejs'); %>
+</body>
+</html>

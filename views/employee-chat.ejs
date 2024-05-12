@@ -1,0 +1,35 @@
+<!-- views/employee.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Chat</title>
+</head>
+<body>
+  <h1>Employee Chat</h1>
+  <div id="messages"></div>
+  <input type="text" id="messageInput" placeholder="Type your message">
+  <button onclick="sendMessage()">Send</button>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io('/employee');
+
+    socket.on('newMessage', message => {
+      const messagesDiv = document.getElementById('messages');
+      messagesDiv.innerHTML += `<p><strong>${message.username}:</strong> ${message.message} - ${message.timestamp}</p>`;
+    });
+
+    function sendMessage() {
+      const messageInput = document.getElementById('messageInput');
+      const message = messageInput.value.trim();
+      const username = 'Employee'; // You can replace this with actual employee username
+      if (message) {
+        socket.emit('sendMessage', { username, message });
+        messageInput.value = '';
+      }
+    }
+  </script>
+</body>
+</html>

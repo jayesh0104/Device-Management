@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Device Management Report</title>
+  <link rel="stylesheet" href="css/admin-panel.css">
+  <link rel="stylesheet" href="/css/nav.css">
+</head>
+<body>
+  <nav>
+    <div class="cname">
+      Jayesh
+    </div>
+    <div class="logout">
+      <form action="/logout" method="post">
+        <button type="submit" class="logout">Logout</button>
+      </form>
+    </div>
+    <div class="logout">
+      <form action="/add-employee" method="post">
+        <button type="submit" class="logout">Add Employee</button>
+      </form>
+    </div>
+  </nav>
+  <div class="mainbody">
+    <h1>Device Allocation Report</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Employee ID</th>
+          <th>Number of Devices</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% deviceCountsByEmployee.forEach(deviceCount => { %>
+          <tr>
+            <td><%= deviceCount._id %></td>
+            <td><%= deviceCount.count %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

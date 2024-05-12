@@ -1,0 +1,62 @@
+*{
+    margin: 0px;
+  }
+  body{
+    background-color: whitesmoke;
+  }
+  nav{
+    padding:0px 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+  }
+  /* .logout{
+    height: 40px;
+  } */
+  nav .cname{
+    margin-left: 20px;
+    margin-top: 10px;
+    font-weight: 900;
+    font-size: 40px;
+    flex-grow: 1;
+  }
+  button{
+    background-color: white;
+    border: 1px rgb(202, 202, 202) solid;
+    border-radius: 5px;
+    height: 40px;
+    width: 100px;
+    margin: 2px;
+    cursor:pointer;
+  }
+  .login{
+    display: flex;
+    align-items: center;
+  }
+  .login a {
+    margin: 0px 8px;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    position: relative; /* Add position relative for pseudo-element */
+  }
+  
+  .login a::before {
+    content: ""; 
+    position: absolute; 
+    bottom: -2px; /* Adjust this value to control the underline position */
+    left: 0; 
+    width: 0%; 
+    height: 2px; /* Adjust this value to control the underline thickness */
+    background-color: black; 
+    transition: width 0.3s ease; /* Transition for underline appearance */
+  }
+  
+  .login a:hover::before {
+    width: 50%; /* Underline up to 50% */
+  }
+  
+  .login a:hover {
+    transform: translateY(-1px); /* Move the link slightly up */
+  }
+  

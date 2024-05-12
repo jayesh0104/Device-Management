@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Device Management</title>
+  <link rel="stylesheet" href="/css/event.css">
+</head>
+<body>
+  <%- include('employeeNav.ejs'); %>
+    <div class="form-container">
+        <h3>Need Reimbursement!!!</h3>
+        <p>Enter the details to apply for a bill reimbursement</p>
+        <form action="/applyReimbursement" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="employeeId">Employee ID:</label>
+                <input type="text" name="employeeId" id="employeeId" value="<%= employeeId %>" readonly>
+            </div>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" name="name" value="<%=employeeName%>" readonly>
+            </div>
+            <div class="form-group">
+              <label for="Date">Date</label>
+              <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+              <label for="time">Time:</label>
+            <input type="time" name="time" id="time" required>
+            </div>
+            <div class="form-group">
+              <label for="amount">Amount:</label>
+              <input type="number" name="amount" id="amount">
+          </div>
+            <div class="form-group">
+                <label for="type">Expenses Type:</label>
+                <select name="type" id="type" class="form-control">
+                <option value="Travel" class="form-control">Travel</option>
+                <option value="Medical" class="form-control">Medical</option>
+                <option value="Official Work" class="form-control">Official Work</option>
+                </select>
+            </div>
+            <div class="form-group">
+              <label for="expendituredetails">Expenditure Details</label>
+              <textarea class="form-control" id="expendituredetails" name="expendituredetails" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="bill">Bill:</label>
+            <input type="file" name="image" accept="image/*" id="bill" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
+      <script src="js/logout.js"></script>
+</body>
+</html>

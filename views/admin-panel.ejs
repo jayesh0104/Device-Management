@@ -1,0 +1,360 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="css/admin-panel.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js"></script>
+
+  </head>
+  <body>
+    <nav>
+      <div class="cname">
+        Jayesh
+      </div>
+      <div class="logout">
+        <form action="/logout" method="post">
+          <button type="submit" class="logout">Logout</button>
+        </form>
+      </div>
+      <div class="logout">
+        <form action="/add-employee" method="post">
+          <button type="submit" class="logout">Add Employee</button>
+        </form>
+      </div>
+      <div class="logout">
+        <form action="/admin-panel/report" method="get">
+          <input type="hidden" name="reportType" value="pdf">
+          <button type="submit" class="logout">Generate Report</button>
+        </form>
+      </div>
+    </nav>
+    <div class="mainbody">
+      <aside>
+        <ul class="alldevice">
+          <h1>All Devices</h1>
+          <% unique.forEach(device => { %>
+            <li class="devices">
+              <a href="/device/<%= device%>"><%= device%></a> <!-- Link to view employees for this device -->
+            </li>
+          <% }); %>
+        </ul>
+      </aside>
+      <div class="container"></div>
+      <form action="/allocate" method="post" class="add-device">
+        <h3>Add New Device</h3>
+        <label for="deviceName">Device Name:</label>
+        <select id="deviceName" name="deviceName" required>
+          <option value="">Select a device</option>
+          <option value="PC">PC</option>
+          <option value="UPS">UPS</option>
+          <option value="SPEAKER">Speaker</option>
+          <option value="HEADPHONE">Headphone</option>
+          <option value="KEYBOARD">Keyboard</option>
+        </select><br>
+        <label for="variant">Serial No:</label>
+        <input type="text" name="variant" class="variant" placeholder="XXXX00000X">
+        <label for="employeeId">Employee ID:</label>
+        <select id="employeeId" name="employeeId" required>
+          <option value="">Select an employee</option>
+          <% employees.forEach(employee => { %>
+          <option value="<%= employee.allocatedTo %>"><%= employee.allocatedTo %></option>
+          <% }); %>
+        </select>
+        <br>
+        <button type="submit" class="submit">Add Device</button><br>
+      </form>
+    </div>
+    <div class="allocated">
+      <ul>
+      <h2>Allocated Devices</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Devices</th>
+            <th>Serial No</th>
+            <th>Employee ID</th>
+            <th>Delete Allocation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% devices.forEach(device => { %>
+            <tr>
+              <td><%= device.name %></td>
+              <td>
+                <% if (device.allocatedTo == null) { %>
+                  Unallocated
+                <% } else { %>
+                  <%= device.variant %>
+                <% } %>
+              </td>
+              <td>
+                <% if (device.allocatedTo == null) { %>
+                  Unallocated
+                <% } else { %>
+                  <%= device.allocatedTo %>
+                <% } %>
+              </td>
+              <td>
+                <% if (device.allocatedTo) { %>
+                    <form action="/delete-allocation/<%= device._id %>" method="post">
+                      <button type="submit" class="delete"><i class="fas fa-trash-alt"></i></button>
+                    </form>
+                <% } else{%>
+                  -
+                <% } %>
+            </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </ul>
+    
+  </div>  
+  <div class="table-container">
+    <table class="styled-table">
+        <h2>Unallocated Device</h2>
+        <thead>
+            <tr>
+                <th>Device Name</th>
+                <th>Requested By</th>
+                <th>Reason</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% devices.forEach(device => { %>
+                <% if (device.allocatedTo == '') { %>
+                    <tr>
+                        <td><%= device.name %></td>
+                        <td><%= device.requestedBy %></td>
+                        <td><%= device.reason %></td>
+                        <td>
+                            <form action="/approve-device/<%= device._id %>" method="post" class="approve">
+                                <label for="variant">Serial No:</label>
+                                <input type="text" name="variant" class="variant">
+                                <button type="submit" class="approve1">Approve</button>
+                            </form>
+                            <form action="/delete-allocation/<%= device._id %>" method="post">
+                              <button type="submit" class="delete"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                <% } %>
+            <% }); %>
+        </tbody>
+    </table>
+  </div>
+  <div class="add"></div>
+
+    <div class="table-container">
+      <table class="styled-table">
+        <ul>
+        <h2>Events</h2>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date & Time</th>
+            <th>Venue</th>
+            <th>Coordinator</th>
+            <th>Employee ID</th>
+            <th>Status</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% events.forEach(event => { %>
+            <tr>
+              <td><%= event.name %></td>
+              <td><%= event.date.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' }) %></td>
+              <td><%= event.venue %></td>
+              <td><%= event.coordinator %></td>
+              <td><%= event.empId %></td>
+              <td>
+                <% if (event.approved == "Not Approved") { %>
+                  Not Approved
+                <% } else { %>
+                  Approved
+                <% } %>
+              </td>
+  
+              <td>
+                <% if (event.approved=="Approved") { %>
+                  <form action="/delete-event/<%= event.name %>" method="post">
+                    <button type="submit" class="delete"><i class="fas fa-trash-alt"></i></button>
+                  </form>
+              <% } else{%>
+                <form action="/approve-event/<%= event.name %>" method="post">
+                  <button type="submit" class="delete">Approve</button>
+                </form>
+                <form action="/delete-event/<%= event.name %>" method="post">
+                  <button type="submit" class="delete"><i class="fas fa-trash-alt"></i></button>
+                </form>
+              <% } %>
+              </td>
+  
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-container">
+      <table class="styled-table">
+        <ul>
+        <h2>Leaves</h2>
+        <thead>
+          <tr>
+            <th>Employee Name</th>
+            <th>Employee ID</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Delete/Approve</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% leaves.forEach(leave => { %>
+            <tr>
+              <td><%= leave.name %></td>
+              <td><%= leave.employeeId %></td>
+              <td><%= leave.fromDate.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' }) %></td>
+              <td><%= leave.tillDate.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' }) %></td>
+              <td><%= leave.reason %></td>
+              <td>
+                <% if (leave.approved == "Not Approved") { %>
+                  Not Approved
+                <% } else { %>
+                  Approved
+                <% } %>
+              </td>
+  
+              <td>
+                <% if (leave.approved=="Approved") { %>
+                  <form action="/delete-leave/<%= leave._id %>" method="post">
+                    <button type="submit" class="delete"><i class="fas fa-trash-alt"></i></button>
+                  </form>
+              <% } else{%>
+                <form action="/approve-leave/<%= leave._id %>" method="post">
+                  <button type="submit" class="delete">Approve</button>
+                </form>
+                <form action="/delete-leave/<%= leave._id %>" method="post">
+                  <button type="submit" class="delete"><i class="fas fa-trash-alt"></i></button>
+                </form>
+              <% } %>
+              </td>
+  
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-container">
+      <table class="styled-table">
+        <ul>
+        <h2>Bill Reimbursement</h2>
+        <thead>
+          <tr>
+            <th>Employee Name</th>
+            <th>Employee ID</th>
+            <th>Applied On</th>
+            <th>Type</th>
+            <th>Details</th>
+            <th>Amount</th>
+            <th>Bill</th>
+            <th>Status</th>
+            <th>Delete/Approve</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% bill.forEach(bill => { %>
+            <tr>
+              <td><%= bill.name %></td>
+              <td><%= bill.empId %></td>
+              <td><%= bill.date.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' }) %></td>
+              <td><%=bill.type %></td>
+              <td><%= bill.expenditureDetails %></td>
+              <td>₹<%=bill.amount%></td>
+              <td><img src="<%=bill.image%>" height="200px"></img></td>
+              <td>
+                <% if (bill.approved == "Not Approved") { %>
+                  Not Approved
+                <% } else { %>
+                  Approved
+                <% } %>
+              </td>
+  
+              <td>
+                <% if (bill.approved=="Approved") { %>
+                  <form action="/delete-reimbursement/<%= bill._id %>" method="post">
+                    <button type="submit" class="delete"><i class="fas fa-trash-alt"></i></button>
+                  </form>
+              <% } else{%>
+                <form action="/approve-reimbursement/<%= bill._id %>" method="post">
+                  <button type="submit" class="delete">Approve</button>
+                </form>
+                <form action="/delete-reimbursement/<%= bill._id %>" method="post">
+                  <button type="submit" class="delete"><i class="fas fa-trash-alt"></i></button>
+                </form>
+              <% } %>
+              </td>
+  
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-container">
+      <table class="styled-table">
+        <ul>
+        <h2>Meeting</h2>
+        <thead>
+          <tr>
+            <th>Employee Name</th>
+            <th>Employee ID</th>
+            <th>Reason</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Delete/Approve</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% meeting.forEach(meeting => { %>
+            <tr>
+              <td><%= meeting.name %></td>
+              <td><%= meeting.empId %></td>
+              <td><%= meeting.reason %></td>
+              <td><%= meeting.date.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' }) %></td>
+              <td>
+                <% if (meeting.approved == "Not Approved") { %>
+                  Not Approved
+                <% } else { %>
+                  Approved
+                <% } %>
+              </td>
+              <td>
+                <% if (meeting.approved=="Approved") { %>
+                  <form action="/delete-meeting/<%= meeting._id %>" method="post">
+                    <button type="submit" class="delete"><i class="fas fa-trash-alt"></i></button>
+                  </form>
+              <% } else{%>
+                <form action="/approve-meeting/<%= meeting._id %>" method="post">
+                  <button type="submit" class="delete">Approve</button>
+                </form>
+                <form action="/delete-meeting/<%= meeting._id %>" method="post">
+                  <button type="submit" class="delete"><i class="fas fa-trash-alt"></i></button>
+                </form>
+              <% } %>
+              </td>
+  
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+   
+  
+  <%- include('footer.ejs'); %>
+  </body>
+  </html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Device Management</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  
+  <%- include('nav.ejs'); %>
+  <aside>
+    <div class="todaysevents asidemain">
+      Todays Events:
+      <ul>
+        <% events.forEach(event => { %>
+          <% const currentDate = new Date(); %>
+          <% const eventDate = new Date(event.date); %>
+          <% if (eventDate > currentDate) { %>
+            <li class="mainevent">
+              > <%= event.name %>
+            </li>
+        <% } else{%> 
+        <%}%>
+          
+        <% }); %>
+      </ul>
+    </div>
+    
+    <div class="spotlight asidemain">
+      Spotlight:
+    </div>
+    <div class="tender asidemain">
+      Tender Details:
+    </div>
+  </aside>
+</body>
+</html>

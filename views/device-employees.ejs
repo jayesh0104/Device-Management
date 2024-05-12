@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Device Employees</title>
+  <link rel="stylesheet" href="/css/admin-panel.css">
+  <link rel="stylesheet" href="/css/device-employees.css">
+</head>
+<body>
+    <nav>
+        <div class="cname">
+          Jayesh
+        </div>
+        <div class="logout">
+          <form action="/logout" method="post">
+            <button type="submit" class="logout">Logout</button>
+          </form>
+        </div>
+      </nav>
+  <div class="outer">
+
+    <% if (device) { %>
+      <h1>Device Name: <%= device[0].name %></h1>
+      <div class="deviceouter">
+        <% device.forEach(device => { %>
+          <div class="device-card">
+            <!-- <img src="device.jpg" alt="Device image" class="device-image"> -->
+            <div class="device-details">
+              <h4 class="device-name">EmpId: <%= device.allocatedTo %></h4>
+              <p class="device-serial-number">Serial Number: <%=device.variant%></p>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <p>Device not found</p>
+    <% } %>
+  </div>
+  <div class="backbtn">
+    <button onclick="window.history.back();">Back</button>
+  </div>
+  
+</body>
+</html>

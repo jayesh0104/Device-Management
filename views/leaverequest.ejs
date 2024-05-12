@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Device Management</title>
+  <link rel="stylesheet" href="/css/event.css">
+</head>
+<body>
+  <%- include('employeeNav.ejs'); %>
+    <div class="form-container">
+        <h3>Applying for a Leave</h3>
+        <p>Enter the details of the leave you're applying for</p>
+        <form action="/leaverequest" method="post">
+            <div class="form-group">
+                <label for="employeeId">Employee ID:</label>
+                <input type="text" name="employeeId" id="employeeId" value="<%= employeeId %>" readonly>
+            </div>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" name="name" value="<%=employeeName%>" readonly>
+            </div>
+            <div class="form-group">
+              <label for="fromDate">From Date</label>
+              <input type="date" class="form-control" id="fromDate" name="fromDate" required>
+            </div>
+            <div class="form-group">
+              <label for="tillDate">Till Date</label>
+              <input type="date" class="form-control" id="tillDate" name="tillDate" required>
+            </div>
+            <div class="form-group">
+              <label for="reason">Reason</label>
+              <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
+      <script src="js/logout.js"></script>
+</body>
+</html>

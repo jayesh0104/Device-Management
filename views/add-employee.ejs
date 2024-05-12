@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Employee</title>
+  <link rel="stylesheet" href="css/add-employee.css">
+</head>
+<body>
+  <nav>
+    <div class="cname">
+      Jayesh
+    </div>
+    <div class="logout">
+      <form action="/logout" method="post">
+        <button type="submit" class="logout">Logout</button>
+      </form>
+    </div>
+  </nav>
+  <div class="container">
+    <form action="/add-employee" method="post" class="add-employee">
+      <h1>Add Employee</h1>
+      <h3>Add a new employee to the system by filling out the form <br>below.</h3>
+      <label for="empId">Employee ID:</label>
+      <input id="empId" name="empId" type="string" required><br>
+      <label for="name">Employee Name:</label>
+      <input id="name" name="name" type="String" required><br>
+      <label for="password">Password:</label>
+      <input id="password" name="password" type="password" required><br>
+      <div class="buttondiv">
+        <button type="submit" class="submit">Add Employee</button>
+        <button onclick="window.history.back();" class="back">Back</button><br>
+      </div>
+    </form>
+  </div>
+  <%- include('footer.ejs'); %>
+</body>
+</html>

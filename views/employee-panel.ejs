@@ -1,0 +1,183 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Employee Panel</title>
+      <link rel="stylesheet" href="/css/employee-panel.css">
+  </head>
+  <body>
+    <!-- <nav>
+      <div class="cname">JAYESH</div>
+      <div class="login">
+        <a href="/event-request?employeeId=<%= employeeId %>" type="button">Event Request</a>
+        <a href="/leaverequest?employeeId=<%= employeeId %>" type="button">Leave Request</a>
+        <a href="/meeting-request?employeeId=<%=employeeId%>" type="button">Meeting Request</a>
+        <a href="/applyReimbursement?employeeId=<%=employeeId%>" type="button">Bill Reimbursement</a>
+        
+        <a href="#" onclick="logout(event)" class="logout">Logout</a>
+      </div>
+    </nav> -->
+    <%- include('employeeNav.ejs'); %>
+      <div class="container">
+          <h2>Welcome <%= employeeName %>,</h2>
+          <h4>Here are the devices allocated to you.</h4>
+        <div class="divider"></div>
+        </div>
+        <div class="deviceouter">
+          <% devices.forEach(device => { %>
+            <div class="device-card">
+              <!-- <img src="device.jpg" alt="Device image" class="device-image"> -->
+              <div class="device-details">
+                <h4 class="device-name"><%= device.name %></h4>
+                <p class="device-serial-number">Serial Number: <%=device.variant%></p>
+                <p class="device-serial-number">Status: <%=device.approvedOrRejected%></p>
+
+              </div>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+        <div class="req">
+          <a href="/employee-request?employeeId=<%= employeeId %>" class="request-button" type="button">Request a new device</a>
+        </div>
+      </div>
+      <hr>
+
+      <div class="container">
+        <h4>Here are all your applied events!</h4>
+        <div class="deviceouter">
+          <% events.forEach(event => { %>
+            <% const currentDate = new Date(); %>
+            <% const eventDate = new Date(event.date); %>
+            <div class="device-card">
+              <!-- <img src="device.jpg" alt="Device image" class="device-image"> -->
+              <div class="device-details">
+                <h4 class="device-name"><%= event.name %></h4>
+                <p class="device-serial-number">Event Date & Time: 
+                  <% if (eventDate > currentDate) { %>
+                    <%= eventDate.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' }) %></p>
+                <% } else{%>
+                    Completed
+                <%}%>
+
+
+                <p class="device-serial-number">Venue: <%= event.venue %></p>
+                <p class="device-serial-number">Coordinator: <%= event.coordinator %></p>
+                <p class="device-serial-number">Event Details: <%= event.eventDetails %></p>
+                <p class="device-serial-number">Image Poster:</p>
+                <img src="<%= event.image %>" alt="Event image">
+                <p class="device-serial-number">Approved: 
+                  <% if (event.approved == "Approved") { %>
+                    Hip Hip Hooray! 🥳
+                  <% } else { %>
+                    Waiting for Approval 🥺
+                  <% } %>  
+                </p>
+              </div>
+            </div>
+          <% }) %>
+          
+          </div>
+      </div>
+      
+      <hr>
+
+      <div class="container">
+        <h4>Here are all your applied leaves!</h4>
+        <div class="deviceouter">
+          <% leaves.forEach(leave => { %>
+            <% const currentDate = new Date(); %>
+            <% const leaveDate = new Date(leave.fromDate); %>
+            <div class="device-card">
+              <!-- <img src="device.jpg" alt="Device image" class="device-image"> -->
+              <div class="device-details">
+                <h4 class="device-name"><%= leave.reason %></h4>
+                <p class="device-serial-number"><b>Leave Date: </b>
+                  <% if (leaveDate > currentDate) { %>
+                    <br>From: <%= leaveDate.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' }) %>
+                    <br>To: <%= (leave.tillDate).toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' }) %>
+                  </p>
+                <% } else{%>
+                    Completed
+                <%}%>
+                <p class="device-serial-number">Approved: 
+                  <% if (leave.approved == "Approved") { %>
+                    Hip Hip Hooray! 🥳
+                  <% } else { %>
+                    Waiting for Approval 🥺
+                  <% } %>  
+                </p>
+              </div>
+            </div>
+          <% }) %>
+          
+          </div>
+      </div>
+      <hr>
+      <div class="container">
+        <h4>Here are all your applied meeting!</h4>
+        <div class="deviceouter">
+          <% meeting.forEach(meeting => { %>
+            <% const currentDate = new Date(); %>
+            <% const meetingDate = new Date(meeting.date); %>
+            <div class="device-card">
+              <!-- <img src="device.jpg" alt="Device image" class="device-image"> -->
+              <div class="device-details">
+                <h4 class="device-name"><%= meeting.reason %></h4>
+                <p class="device-serial-number"><b>Meeting Date: </b>
+                  <% if (meetingDate > currentDate) { %>
+                     <%= meetingDate.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' }) %>
+                  </p>
+                <% } else{%>
+                    Completed
+                <%}%>
+                <p class="device-serial-number">With: <%= meeting.requestedWith %></p>
+
+                <p class="device-serial-number">Approved: 
+                  <% if (meeting.approved == "Approved") { %>
+                    Hip Hip Hooray! 🥳
+                  <% } else { %>
+                    Waiting for Approval 🥺
+                  <% } %>  
+                </p>
+              </div>
+            </div>
+          <% }) %>
+          
+          </div>
+      </div>
+      <hr>
+      <div class="container">
+        <h4>Here are all your applied reimbursements!</h4>
+        <div class="deviceouter">
+          <% bill.forEach(bill => { %>
+            <% const currentDate = new Date(); %>
+            <% const meetingDate = new Date(bill.date); %>
+            <div class="device-card">
+              <!-- <img src="device.jpg" alt="Device image" class="device-image"> -->
+              <div class="device-details">
+                <h4 class="device-name"><%= bill.type %></h4>
+                <p class="device-serial-number"><b>Applied Date: </b>
+                  <%= meetingDate.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' }) %>
+                </p>
+                
+                <p class="device-serial-number">Details: <%= bill.expenditureDetails %></p>
+
+                <p class="device-serial-number">Approved: 
+                  <% if (bill.approved == "Approved") { %>
+                    Hip Hip Hooray! 🥳
+                  <% } else { %>
+                    Waiting for Approval 🥺
+                  <% } %>  
+                </p>
+              </div>
+            </div>
+          <% }) %>
+          
+          </div>
+      </div>
+
+      <script src="js/logout.js"></script>
+  </body>
+  </html>

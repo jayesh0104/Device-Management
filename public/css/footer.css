@@ -1,0 +1,30 @@
+footer {
+    position: absolute;
+    margin-bottom: 0px;
+    padding: 20px 0px;
+    background-color: #f9f9f9;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .footerul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .footerli {
+    margin: 0 10px;
+  }
+  
+  .footerli a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .footerli a:hover {
+    text-decoration: underline;
+  }

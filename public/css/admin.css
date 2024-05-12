@@ -1,0 +1,75 @@
+*{
+  margin: 0px;
+}
+body{
+  background-color: whitesmoke;
+}
+nav{
+  padding:0px 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+}
+/* .logout{
+  height: 40px;
+} */
+nav .cname{
+  margin-left: 20px;
+  margin-top: 10px;
+  font-weight: 900;
+  font-size: 40px;
+  flex-grow: 1;
+}
+button{
+  background-color: white;
+  border: 1px rgb(202, 202, 202) solid;
+  border-radius: 5px;
+  height: 40px;
+  width: 100px;
+  margin: 2px;
+  cursor:pointer;
+}
+.admin-login h3{
+  margin: 10px 0px;
+}
+.admin-login {
+  width: 300px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  margin: 0 auto;
+  margin-top: 100px;
+  margin-bottom: 35px;
+}
+
+label {
+  display: block;
+  /* margin-bottom: 8px; */
+  font-size: 18px;
+}
+
+input[type="text"], input[type="password"] {
+  padding: 8px;
+  font-size: 18px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+}
+
+.loginbtn[type="submit"] {
+  padding: 8px 16px;
+  font-size: 18px;
+  background-color: #333;
+    color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.loginbtn[type="submit"]:hover {
+  background-color: darkblue;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Device Management</title>
+  <link rel="stylesheet" href="/css/event.css">
+</head>
+<body>
+  <%- include('employeeNav.ejs'); %>
+    <div class="form-container">
+        <h3>Something Urgent!!!</h3>
+        <p>Enter the details to apply for a meeting</p>
+        <form action="/meeting-request" method="post">
+            <div class="form-group">
+                <label for="employeeId">Employee ID:</label>
+                <input type="text" name="employeeId" id="employeeId" value="<%= employeeId %>" readonly>
+            </div>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" name="name" value="<%=employeeName%>" readonly>
+            </div>
+            <div class="form-group">
+              <label for="Date">Date</label>
+              <input type="date" class="form-control" id="Date" name="Date" required>
+            </div>
+            <div class="form-group">
+                <label for="withWhom">Choose:</label>
+                <select name="withWhom" id="withWhom" class="form-control">
+                <option value="Registrar" class="form-control">Rigistrar</option>
+                <option value="Finance Office" class="form-control">Finance Office</option>
+                <option value="Director" class="form-control">Director</option>
+                </select>
+            </div>
+            <div class="form-group">
+              <label for="reason">Reason</label>
+              <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
+      <script src="js/logout.js"></script>
+</body>
+</html>
