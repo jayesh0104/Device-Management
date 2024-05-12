@@ -46,8 +46,8 @@ Jayesh Daga
 
 ## Screenshots
 
-![Admin Screenshot](https://imgur.com/E2cR9yWR)
-![Add Employee Screenshot](https://imgur.com/d4wfGyR)
-![Director Login Screenshot](https://imgur.com/AVpUtve)
-![Employee Panel Screenshot](https://imgur.com/BEHmkyW)
+![Admin Screenshot](https://drive.google.com/file/d/1Roia8TQCf4anTlrgWAZa7lnyJgenx1AH/view?usp=sharing)
+![Add Employee Screenshot](https://drive.google.com/file/d/1BOK8bchi8COxeLOxY3ZsIinb3xdNrDbh/view?usp=drive_link)
+![Director Login Screenshot](https://drive.google.com/file/d/1FzuzS5FHwsl0AaAZauO4NS_ktKmjZ18p/view?usp=sharing)
+![Employee Panel Screenshot](https://drive.google.com/file/d/1Yo557T9sWSYC1HKmyd0JO1vCp6jZ4xnS/view?usp=sharing)
 
