@@ -45,9 +45,15 @@ Jayesh Daga
 
 
 ## Screenshots
-
+Admin Panel
 ![Admin Screenshot](https://github.com/jayesh0104/Device-Management/blob/main/readmeimg/admin1.png)
+
+Add New Employee
 ![Add Employee Screenshot](https://github.com/jayesh0104/Device-Management/blob/main/readmeimg/admin2.png)
+
+Director Login Page
 ![Director Login Screenshot](https://github.com/jayesh0104/Device-Management/blob/main/readmeimg/director1.png)
+
+Employee Panel
 ![Employee Panel Screenshot](https://github.com/jayesh0104/Device-Management/blob/main/readmeimg/emp1.png)
 
