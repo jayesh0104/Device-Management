@@ -46,8 +46,8 @@ Jayesh Daga
 
 ## Screenshots
 
-![Admin Screenshot](https://drive.google.com/file/d/1Roia8TQCf4anTlrgWAZa7lnyJgenx1AH/view?usp=sharing)
-![Add Employee Screenshot](https://drive.google.com/file/d/1BOK8bchi8COxeLOxY3ZsIinb3xdNrDbh/view?usp=drive_link)
-![Director Login Screenshot](https://drive.google.com/file/d/1FzuzS5FHwsl0AaAZauO4NS_ktKmjZ18p/view?usp=sharing)
-![Employee Panel Screenshot](https://drive.google.com/file/d/1Yo557T9sWSYC1HKmyd0JO1vCp6jZ4xnS/view?usp=sharing)
+![Admin Screenshot](https://github.com/jayesh0104/Device-Management/blob/main/readmeimg/admin1.png)
+![Add Employee Screenshot](https://github.com/jayesh0104/Device-Management/blob/main/readmeimg/admin2.png)
+![Director Login Screenshot](https://github.com/jayesh0104/Device-Management/blob/main/readmeimg/director1.png)
+![Employee Panel Screenshot](https://github.com/jayesh0104/Device-Management/blob/main/readmeimg/emp1.png)
 
