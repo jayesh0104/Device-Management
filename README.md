@@ -43,3 +43,11 @@ Jayesh Daga
 - [Instagram](https://www.instagram.com/dagajayesh/?hl=en)
 
 
+
+## Screenshots
+
+![Admin Screenshot](https://imgur.com/E2cR9yWR)
+![Add Employee Screenshot](https://imgur.com/d4wfGyR)
+![Director Login Screenshot](https://imgur.com/AVpUtve)
+![Employee Panel Screenshot](https://imgur.com/BEHmkyW)
+
